@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+        <!-- IE可能不見得有效 -->
+        <META HTTP-EQUIV="EXPIRES" CONTENT="0">
+        <!-- 設定成馬上就過期 -->
+        <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <title>基本儀表板</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <!-- 頂部標頭 -->
+    <header id="main-header">
+        <div class="logo">電子表單簽核系統</div>
+        <nav>
+            <ul>
+                <li><a href="#">首頁</a></li>
+                <li><a href="#">幫助</a></li>
+                <li><a href="#">登出</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="dashboard">
+        <!-- 側邊欄 -->
+        <div id="sidebar">
+            <ul>
+                <li class="menu-item">
+                    <a href="index.html">首頁</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#">填寫表單 <span class="arrow">&#9662;</span></a>
+                    <ul class="submenu">
+                        <li><a href="deviceForm.html">設備申請單</a></li>
+                        <li><a href="#">月報表</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#">查詢表單 <span class="arrow">&#9662;</span></a>
+                    <ul class="submenu">
+                        <li><a href="personFrom.html">個人發案紀錄</a></li>
+                        <li><a href="#">個人待審清單</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#">承辦</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#">登出</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 主內容區 -->
+        <div id="main-content">
+        
+            <section class="form-container" >
+                <h2>設備請購單</h2>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="applicant">申請人：</label>
+                <input type="text" id="applicant" name="applicant" required>
+            </div>
+            <!-- <div class="form-group">
+                <label for="date">申請日期：</label>
+                <input type="date" id="date" name="date" required>
+            </div> -->
+            <div class="form-group">
+                <label for="purchase-date">請購日期：</label>
+                <input type="date" id="purchase-date" name="purchase-date" required>
+            </div>
+          
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="purchase-no">請購編號：</label>
+                <input type="text" id="purchase-no" name="purchase-no" required>
+            </div>
+            <div class="form-group">
+                <label for="purchase-dept">請購部門：</label>
+                <input type="text" id="purchase-dept" name="purchase-dept" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="company-name">公司名稱：</label>
+                <input type="text" id="company-name" name="company-name">
+            </div>
+            <div class="form-group">
+                <label for="vendor-no">廠商編號：</label>
+                <input type="text" id="vendor-no" name="vendor-no">
+            </div>
+        </div>
+
+        <!-- Table-like layout for items -->
+       
+            <div class="item-header">
+                <!-- <div>項次</div> -->
+                <div>設備編號</div>
+                <div>品名</div>
+                <div>請購數量</div>
+                <div>單價</div>
+                <div>請購金額</div>
+            </div>
+
+            <div class="item-row">
+                
+                <div><input type="text" name="item-code-1"></div>
+                <div><input type="text" name="item-name-1"></div>
+                <div><input type="number" name="item-qty-1" placeholder="0"></div>
+                <div><input type="number" name="item-price-1" placeholder="0"></div>
+                <div><input type="number" name="item-amount-1" placeholder="0"></div>
+            </div>
+            
+            <div class="item-row">
+                
+                <div><input type="text" name="item-code-1"></div>
+                <div><input type="text" name="item-name-1"></div>
+                <div><input type="number" name="item-qty-1" placeholder="0"></div>
+                <div><input type="number" name="item-price-1" placeholder="0"></div>
+                <div><input type="number" name="item-amount-1" placeholder="0"></div>
+            </div>
+        
+
+        <!-- Repeat .item-row for additional items -->
+
+        <div class="form-row">
+            <div class="form-group full-width">
+                <label for="remarks">備註：</label>
+                <textarea id="remarks" name="remarks" rows="4"></textarea>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>【備註事項】此單紅色星號為必填欄位；請務必照實填寫。</p>
+            <p>請將發票連同附件送回財務部。</p>
+        </div>
+        
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

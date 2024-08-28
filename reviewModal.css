@@ -1,0 +1,196 @@
+/* 模态框背景 */
+.modal {
+    display: none; /* 默认隐藏 */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* 半透明背景 */
+}
+
+/* 模态框内容 */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 居中 */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 700px; /* 最大宽度 */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+/* 关闭按钮 */
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 表单样式 */
+.form-group {
+    margin-bottom: 15px;
+}
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+.form-group label {
+    font-weight: bold;
+}
+
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#fileUpload {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+#fileLabel {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.signer-info {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.signer-info span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+
+
+.approval-history {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.approval-history h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.approval-history ul {
+    list-style: none;
+    padding: 0;
+}
+
+.approval-history li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.approval-history li:last-child {
+    border-bottom: none;
+}
+
+.signer-info {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.signer-info p {
+    margin: 5px 0;
+}
+
+.approval-time {
+    color: #888;
+    font-size: 12px;
+    float: right;
+}
+
+strong {
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+/* 模态框底部按钮 */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.modal-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.modal-btn:hover {
+    background-color: #0056b3;
+}
+
+#cancel-btn {
+    background-color: #dc3545;
+}
+
+#cancel-btn:hover {
+    background-color: #c82333;
+}

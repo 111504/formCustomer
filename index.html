@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+        <!-- IE可能不見得有效 -->
+        <META HTTP-EQUIV="EXPIRES" CONTENT="0">
+        <!-- 設定成馬上就過期 -->
+        <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <title>基本儀表板</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="form.css"> -->
+</head>
+<body>
+    <!-- 頂部標頭 -->
+    <header id="main-header">
+        <div class="logo">電子表單簽核系統</div>
+        <nav>
+            <ul>
+                <li><a href="#">首頁</a></li>
+                <li><a href="#">幫助</a></li>
+                <li><a href="#">登出</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="dashboard">
+        <!-- 側邊欄 -->
+        <div id="sidebar">
+            <!-- <h2>儀表板</h2> -->
+            <ul>
+                <li class="menu-item">
+                    <a href="index.html">系統主頁</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#">填寫表單 <span class="arrow">&#9662;</span></a>
+                    <ul class="submenu">
+                        <li><a href="deviceForm.html">設備申請單</a></li>
+                        <li><a href="#">月報表</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#">查詢表單 <span class="arrow">&#9662;</span></a>
+                    <ul class="submenu">
+                        <li><a href="personFrom.html">個人發案紀錄</a></li>
+                        <li><a href="#">個人待審清單</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#">承辦</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#">登出</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 主內容區 -->
+        <div id="main-content">
+            <section id="overview">
+                <h2>總覽</h2>
+                <div class="cards">
+                    <div class="card">卡片1</div>
+                    <div class="card">卡片2</div>
+                    <div class="card">卡片3</div>
+                </div>
+            </section>
+            <section class="form-container" style="display: none;">
+                <!-- 表單內容將動態載入 -->
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

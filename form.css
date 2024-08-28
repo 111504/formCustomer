@@ -1,0 +1,124 @@
+.form-container {
+    background-color: white;
+    padding: 20px;
+    margin: 0 auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    border-radius: 5px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.form-group {
+    flex: 1;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    
+}
+
+label {
+    min-width: 100px;
+    font-weight: bold;
+    white-space: nowrap;
+    text-align: left; /* 文字靠左 */
+    padding: 0 5px;
+    border: 1px solid #ccc;
+    height: 40px; /* 设置为与input相同的高度 */
+    line-height: 40px; /* 使用line-height实现文字的垂直居中 */
+    box-sizing: border-box;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"],
+textarea {
+    flex: 1;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    height: 40px;
+    padding-left: 10px; /* 增加左边距，使文字不贴边 */
+    text-align: left; /* 输入的文字靠左 */
+}
+
+textarea {
+    resize: none;
+}
+textarea :focus{
+    border: 1px solid #4ec1ff;
+}
+/* 使用伪元素为必填字段添加星号 */
+label[for="applicant"]::after,
+label[for="date"]::after,
+label[for="purchase-date"]::after,
+label[for="purchase-dept"]::after,
+label[for="purchase-no"]::after {
+    content: "*";
+    color: red;
+}
+
+
+
+
+
+
+/* 表格样式 */
+.item-header,
+.item-row {
+    display: flex;
+    border: 1px solid #ccc; /* 为每一行添加边框 */
+    border-bottom: 0; /* 除最后一行外去掉底部边框 */
+}
+
+.item-header:last-of-type,
+.item-row:last-of-type {
+    border-bottom: 1px solid #ccc; /* 最后一行保留底部边框 */
+}
+
+.item-row div{
+    border-bottom: 1px solid #ccc; /* 最后一行保留底部边框 */
+}
+
+.item-header div,
+.item-row div {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-right: 1px solid #ccc; /* 每一列添加右边框 */
+}
+
+.item-header div:last-of-type,
+.item-row div:last-of-type {
+    border-right: none; /* 最后一列去掉右边框 */
+}
+
+.item-row input {
+    width: 100%; /* 输入框占满单元格 */
+    border: none; /* 去掉输入框的边框，避免双重边框 */
+    padding: 10px;
+    text-align: left;
+}
+
+.item-header {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.footer {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #333;
+}
+
+.full-width {
+    width: 100%;
+}
