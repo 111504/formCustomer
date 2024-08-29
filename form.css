@@ -7,6 +7,16 @@
     border-radius: 5px;
 }
 
+
+
+#main-content {
+    flex: 1;
+    margin-left: 250px; /* 側邊欄的寬度 */
+    padding: 20px;
+    padding-top: 60px; /* 預留 header 的空間 */
+}
+
+
 h2 {
     text-align: center;
     margin-bottom: 20px;

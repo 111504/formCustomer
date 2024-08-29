@@ -1,0 +1,34 @@
+.form-reassign-sign{
+    background-color: rgb(227, 227, 227);
+    padding: 20px;
+    margin: 0 auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    border-radius: 5px;
+    border: 1px solid #e31717;
+}
+
+.form-reassign-station{
+    padding: 5px 5px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #5a41d7;
+    margin-top: 5px;
+}
+
+.form-item{
+    padding: 0 5px;
+    border: 1px solid #000000;
+    line-height: 2;
+}
+
+.form-reasign-button{
+    color: rgb(255, 255, 255);
+    background-color: red;
+    border-radius: 5px;
+    
+}
+
+.form-reasign-button:hover{
+    background-color: rgb(219, 108, 108);
+}

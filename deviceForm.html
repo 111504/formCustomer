@@ -11,6 +11,7 @@
     <title>基本儀表板</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="formAsign.css">
 </head>
 <body>
     <!-- 頂部標頭 -->
@@ -40,10 +41,10 @@
                     </ul>
                 </li>
                 <li class="menu-item">
-                    <a href="#">查詢表單 <span class="arrow">&#9662;</span></a>
+                    <a href="#">查詢作業 <span class="arrow">&#9662;</span></a>
                     <ul class="submenu">
-                        <li><a href="personFrom.html">個人發案紀錄</a></li>
-                        <li><a href="#">個人待審清單</a></li>
+                        <li><a href="personalFrom.html">發案紀錄</a></li>
+                        <li><a href="reviewFrom.html">個人待審清單</a></li>
                     </ul>
                 </li>
                 <li class="menu-item">
@@ -58,7 +59,7 @@
         <!-- 主內容區 -->
         <div id="main-content">
         
-            <section class="form-container" >
+        <section class="form-container" >
                 <h2>設備請購單</h2>
         
         <div class="form-row">
@@ -143,10 +144,37 @@
             <p>請將發票連同附件送回財務部。</p>
         </div>
         
-            </section>
+        </section>
+        <!-- 指定簽核 -->
+        <section class="form-reassign-sign">
+          <div class="form-reassign-station">
+             <div class="form-item">1</div>
+             <div class="form-item">二級專員</div>
+             <div class="form-item">王治中</div>
+             <!-- 之後需要動態生成 -->
+             <select class="form-item form-reassign-department">
+                <option value="FIN">財務室</option>
+                <option value="PUR">採購室</option>
+                <option value="PER">人事室</option>
+            </select>
+            
+             <select class="form-item form-reassign-person">
+                <option value="pur10012">人員A</option>
+                <option value="pur54451">人員B</option>
+                <option value="fin65487">人員C</option>
+            </select>
+            <div class="form-reasign-button form-item">重新指定</div>
+          </div>
+
+          
+        </section>
+
         </div>
+
+
     </div>
 
     <script src="script.js"></script>
+    <script src="ressign.js"></script>
 </body>
 </html>

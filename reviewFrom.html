@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+    <!-- IE可能不見得有效 -->
+    <META HTTP-EQUIV="EXPIRES" CONTENT="0">
+    <!-- 設定成馬上就過期 -->
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <title>基本儀表板</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.min.css">
+    <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/2.1.4/js/dataTables.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="reviewModal.css">
+</head>
+<body>
+    <!-- 頂部標頭 -->
+    <header id="main-header">
+        <div class="logo">電子表單簽核系統</div>
+        <nav>
+            <ul>
+                <li><a href="#">首頁</a></li>
+                <li><a href="#">幫助</a></li>
+                <li><a href="#">登出</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="dashboard">
+        <!-- 側邊欄 -->
+        <div id="sidebar">
+            <!-- <h2>儀表板</h2> -->
+            <ul>
+                <li class="menu-item">
+                    <a href="index.html">系統主頁</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#">填寫表單 <span class="arrow">&#9662;</span></a>
+                    <ul class="submenu">
+                        <li><a href="deviceForm.html">設備申請單</a></li>
+                        <li><a href="#">月報表</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#">查詢作業 <span class="arrow">&#9662;</span></a>
+                    <ul class="submenu">
+                        <li><a href="personalFrom.html">發案紀錄</a></li>
+                        <li><a href="reviewFrom.html">個人待審清單</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#">承辦</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#">登出</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 主內容區 -->
+        <div id="main-content">
+            <table id="myTable" class="display">
+                <thead>
+                    <tr>
+                        <th>申請編號</th>
+                        <th>表單名稱</th>
+                        <th>發起者</th>
+                        <th>申請時間</th>
+                        <th>截止時間</th>
+                       
+                        <!-- <th>進度</th> -->
+                        <th>操作</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>12541</td>
+                        <td>設備申請單</td>
+                        <td>測試者</td>
+                        <td>2024-09-14 16:11:24</td>
+                        <td>2024-12-14 13:10:24</td>
+                       
+                        <!-- <td>審核中</td> -->
+                        <td><button class="review-btn">審核</button></td>
+                    </tr>
+                    <tr>
+                        <td>15141</td>
+                        <td>設備申請單</td>
+                        <td>測試者</td>
+                        <td>2024-09-14 16:11:24</td>
+                        <td>2024-12-14 13:10:24</td>
+                        
+                        <!-- <td>已結案</td> -->
+                        <td><button class="review-btn">審核</button></td>
+                    </tr>
+                  
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+<!-- 表單操作框 -->
+<div id="reviewModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+       
+        <form>
+            <div class="form-group">
+                <div class="sign-optopn">
+                    <label>選擇簽核動作：</label><br>
+                    <input type="radio" name="action" value="agree"> 同意
+                    <input type="radio" name="action" value="back"> 退回
+                    <input type="radio" name="action" value="asign"> 代理
+                    <input type="radio" name="action" value="reasign"> 重新指定
+                </div>
+            </div>
+            <div class="form-group">
+                <label>簽核意見輸入：</label>
+                <textarea rows="4"></textarea>
+            </div>
+            <!-- <div class="form-group">
+                <label>簽核文件上傳：</label><br>
+                <input type="file" id="fileUpload">
+                <span id="fileLabel">未選擇任何檔案</span>
+            </div> -->
+            <div class="form-group">
+                <div class="approval-history">
+                    <h3>簽核紀錄：</h3>
+                    <ul>
+                        <li>
+                            <div class="signer-info">
+                                <p><strong>申請：申請人</strong> 羅淑婷 計畫管理組 行政助理 <span class="approval-time">完成時間: 2023-04-26 16:49:15</span></p>
+                                <p>簽核意見：測試</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="signer-info">
+                                <p><strong>會簽 : 代理人</strong> 劉XX 電機工程學系 系主任 <span class="approval-time">完成時間: 2023-04-26 16:49:53</span></p>
+                                <p>簽核意見：</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="signer-info">
+                                <p><strong>呈核 : 計畫執行單位主管</strong> 徐XX 電機資訊學院 院長 <span class="approval-time">完成時間: 2023-04-26 16:50:39</span></p>
+                                <p>簽核意見：</p>
+                            </div>
+                        </li>
+                        <!-- 可以继续添加更多记录 -->
+                    </ul>
+                </div>
+            </div>
+            <button type="submit" class="submit-btn">執行</button>
+        </form>
+    </div>
+</div>
+
+<!-- 重新指定的模态框 -->
+<div id="reassignModal" class="modal">
+    <div class="modal-content">
+        <h3>重新指定審核人員</h3>
+        <label for="reassign-select">選擇人員：</label>
+        <select id="reassign-select">
+            <option value="person1">人員A</option>
+            <option value="person2">人員B</option>
+            <option value="person3">人員C</option>
+            <!-- 可以根据需求添加更多选项 -->
+        </select>
+        <div class="modal-footer">
+            <button id="cancel-btn" class="modal-btn">取消</button>
+            <button id="confirm-btn" class="modal-btn">確認</button>
+        </div>
+    </div>
+</div>
+    <script src="script.js"></script>
+    <script src="personFrom.js"></script>
+</body>
+</html>
