@@ -9,9 +9,9 @@ const departments = [
 ];
 
 const persons = [
-    { value: 'pur10012', label: '人員A' },
-    { value: 'pur54451', label: '人員B' },
-    { value: 'fin65487', label: '人員C' }
+    { id: 'pur10012', name: '人員A' },
+    { id: 'pur54451', name: '人員B' },
+    { id: 'fin65487', name: '人員C' }
 ];
 
 
@@ -58,8 +58,8 @@ function createReassignStation( stationNumber,position,name,departments,persons)
     personSelect.className = 'form-item form-reassign-person';
     persons.forEach(person => {
         const option = document.createElement('option');
-        option.value = person.value;
-        option.textContent = person.label;
+        option.value = person.id;
+        option.textContent = person.name;
         personSelect.appendChild(option);
     });
     stationDiv.appendChild(personSelect);
