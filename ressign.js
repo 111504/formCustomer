@@ -2,6 +2,12 @@
 // function 帶入站點總站數 第n站 每站簽核人 職位
 
 // 动态生成一个 form-reassign-station 并添加到父容器
+
+/*
+ api 回傳學校組織
+ 使用第一筆處室作為預設
+ 回傳 該處室的人員名單填入人員列表
+*/
 const departments = [
     { value: 'FIN', label: '財務室' },
     { value: 'PUR', label: '採購室' },
