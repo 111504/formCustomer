@@ -14,6 +14,11 @@ const persons = [
     { id: 'fin65487', name: '人員C' }
 ];
 
+const formInit=[
+   {index: '1',jobtitle:'二級專員',name:"王治中"},
+   {index: '2',jobtitle:'一級專員',name:"林愈停"},
+   {index: '3',jobtitle:'主任秘書',name:"陳詩涵"}
+];
 
 let formSection = document.getElementsByClassName('form-reassign-sign')[0];
 /*
@@ -74,5 +79,8 @@ function createReassignStation( stationNumber,position,name,departments,persons)
     return stationDiv;
 }
 
-const newStation = createReassignStation(2, '二級專員', '李小明', departments, persons);
-formSection.appendChild(newStation);
+formInit.forEach(element => {
+    const newStation = createReassignStation(element.index, element.jobtitle, element.name, departments, persons);
+    formSection.appendChild(newStation);    
+});
+
