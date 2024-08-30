@@ -101,8 +101,8 @@ function populateDepartments(departmentSelect) {
       
       data.forEach((item) => {
         const department = document.createElement("option");
-        department.value = item.depId;
-        department.textContent = item.depName;
+        department.value = item.orgCode;
+        department.textContent = item.orgName;
         departmentSelect.appendChild(department);
       });
   
