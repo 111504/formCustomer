@@ -10,23 +10,6 @@
 */
 import { get } from "./net/request.js";
 
-const departments = [
-  { value: "FIN", label: "財務室" },
-  { value: "PUR", label: "採購室" },
-  { value: "PER", label: "人事室" }
-];
-
-const persons = [
-  { id: "pur10012", name: "人員A" },
-  { id: "pur54451", name: "人員B" },
-  { id: "fin65487", name: "人員C" }
-];
-
-const formInit = [
-  { index: "1", jobtitle: "二級專員", name: "王治中" },
-  { index: "2", jobtitle: "一級專員", name: "林愈停" },
-  { index: "3", jobtitle: "主任秘書", name: "陳詩涵" }
-];
 
 let formSection = document.getElementsByClassName("form-reassign-sign")[0];
 /*
@@ -59,25 +42,15 @@ function createReassignStation(
   itemName.textContent = name;
   stationDiv.appendChild(itemName);
 
+
+  //部門選擇框
   const departmentSelect = document.createElement("select");
   departmentSelect.className = "form-item form-reassign-department";
-  departments.forEach((item) => {
-    const department = document.createElement("option");
-    department.value = item.value;
-    department.textContent = item.label;
-    departmentSelect.appendChild(department);
-  });
   stationDiv.appendChild(departmentSelect);
 
   // 创建和添加人员 select 元素
   const personSelect = document.createElement("select");
   personSelect.className = "form-item form-reassign-person";
-  persons.forEach((person) => {
-    const option = document.createElement("option");
-    option.value = person.id;
-    option.textContent = person.name;
-    personSelect.appendChild(option);
-  });
   stationDiv.appendChild(personSelect);
 
   // 创建和添加重新指定按钮
@@ -86,19 +59,62 @@ function createReassignStation(
   reassignButton.textContent = "重新指定";
   stationDiv.appendChild(reassignButton);
 
+  //綁定指定按鈕點擊事件
+reassignButton.addEventListener("click",function(){
+   const selectDepartment=departmentSelect.options[departmentSelect.selectedIndex].textContent;
+   const selectPerson=personSelect.options[personSelect.selectedIndex].textContent;
+
+   console.log(`重新指定为：部门=${selectDepartment}, 人员=${selectPerson}`);
+   //更新顯示選擇的職位和人員名稱
+   itemPosition.textContent=selectDepartment;
+   itemName.textContent=selectPerson;
+})
+
+  departmentSelect.addEventListener("change",function(){
+    const selectedDepId=departmentSelect.value;
+    console.log("selectedDepId=",selectedDepId)
+    //根據部們id ，動態獲取部門人員的列表
+    get(`api/v1/persons?depId=${selectedDepId}`,(data)=>{
+        console.log("get_person_success", data);
+
+        //清空當前人員選擇框的選項
+        personSelect.innerHTML="";
+
+        //將新的人員列表添加到選項框中
+        data.forEach((persons)=>{
+            const option=document.createElement("option");
+            option.value=persons.id;
+            option.textContent=persons.name;
+            console.log('添加選項',option)
+            personSelect.appendChild(option);
+        })
+        console.log('personSelect=',personSelect)
+    })
+  })
   return stationDiv;
 }
 
-formInit.forEach((element) => {
-  const newStation = createReassignStation(
-    element.index,
-    element.jobtitle,
-    element.name,
-    departments,
-    persons
-  );
-  formSection.appendChild(newStation);
-});
+//獲取部們列表 並填充到選擇框內
+function populateDepartments(departmentSelect) {
+    get(`api/v1/department`, (data) => {
+      console.log("get_department_success", data);
+      
+      data.forEach((item) => {
+        const department = document.createElement("option");
+        department.value = item.depId;
+        department.textContent = item.depName;
+        departmentSelect.appendChild(department);
+      });
+  
+      // 默认选择第一个部门并触发 change 事件来加载人员
+      if (departmentSelect.options.length > 0) {
+        departmentSelect.value = departmentSelect.options[0].value;
+        departmentSelect.dispatchEvent(new Event('change'));
+      }
+    });
+  }
+
+
 
 const formId = "123"; // 假设formId是123
 get(`api/v1/forms/formId?formId=${formId}`, (data) => {
@@ -107,10 +123,14 @@ get(`api/v1/forms/formId?formId=${formId}`, (data) => {
     const newStation = createReassignStation(
       element.index,
       element.jobtitle,
-      element.name,
-      departments,
-      persons
+      element.name
+  
     );
     formSection.appendChild(newStation);
+
+    //創建站點表單後，填充部們訊息
+    const departmentSelect = newStation.querySelector(".form-reassign-department");
+    populateDepartments(departmentSelect);
   });
 });
+
