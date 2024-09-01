@@ -170,26 +170,16 @@ function bindFormSubmit() {
         vendorNo: document.querySelector("#vendor-no").value,
         items: [] // 初始化 items 数组
       };
-
-      console.log(document.querySelectorAll(".item-row"));
-      // // 提取 item-row 中的每一项内容
-      // document.querySelectorAll(".item-row").forEach((row, index) => {
-      //   const item = {
-      //     itemCode: row.querySelector(`input[name="item-code-${index + 1}"]`)
-      //       .value,
-      //     itemName: row.querySelector(`input[name="item-name-${index + 1}"]`)
-      //       .value,
-      //     itemQty: row.querySelector(`input[name="item-qty-${index + 1}"]`)
-      //       .value,
-      //     itemPrice: row.querySelector(`input[name="item-price-${index + 1}"]`)
-      //       .value,
-      //     itemAmount: row.querySelector(
-      //       `input[name="item-amount-${index + 1}"]`
-      //     ).value
-      //   };
-      //   formData.items.push(item); // 将每一项添加到 items 数组中
-      // });
-
+      document.querySelectorAll(".item-row").forEach((row) => {
+        const item = {
+          itemCode: row.querySelector(`input[name="item-code-1"]`).value,
+          itemName: row.querySelector(`input[name="item-name-1"]`).value,
+          itemQty: row.querySelector(`input[name="item-qty-1"]`).value,
+          itemPrice: row.querySelector(`input[name="item-price-1"]`).value,
+          itemAmount: row.querySelector(`input[name="item-amount-1"]`).value
+        };
+        formData.items.push(item); // 将每一项添加到 items 数组中
+      });
       // 备注
       formData.remarks = document.querySelector("#remarks").value;
       // 将表单数据转换为 JSON

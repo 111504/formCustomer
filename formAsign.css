@@ -38,10 +38,10 @@
 .form-submit-div {
   display: flex;
   justify-content: end;
-  border: 1px solid #5a41d7;
+  /* border: 1px solid #5a41d7; */
 }
 .form-submit-button {
   width: 100px;
   padding: 5px 10px;
-  margin: 10px 0;
+  margin: 10px 5px;
 }
