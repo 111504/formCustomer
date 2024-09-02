@@ -18,8 +18,7 @@ function createReassignStation(
   stationNumber,
   position,
   name,
-  departments,
-  persons
+  staffCode
 ) {
   //創建 form-reassign-station
   const stationDiv = document.createElement("div");
@@ -39,6 +38,7 @@ function createReassignStation(
   const itemName = document.createElement("div");
   itemName.className = "form-item";
   itemName.textContent = name;
+  itemName.dataset.staffCode=staffCode;
   stationDiv.appendChild(itemName);
 
   //部門選擇框
@@ -65,11 +65,16 @@ function createReassignStation(
       personSelect.options[personSelect.selectedIndex].textContent;
     const selectPosition =
       personSelect.options[personSelect.selectedIndex].dataset.position;
+    const staffCode = personSelect.options[personSelect.selectedIndex].dataset.staffCode;
 
     console.log(`重新指定为：位階=${selectPosition}, 人員=${selectPerson}`);
     //更新顯示選擇的職位和人員名稱
+    //位階
     itemPosition.textContent = selectPosition;
+    //人名
     itemName.textContent = selectPerson;
+    //角色代碼
+    itemName.dataset.staffCode = staffCode;
   });
 
   departmentSelect.addEventListener("change", function () {
@@ -117,16 +122,17 @@ function populateDepartments(departmentSelect) {
   });
 }
 
-const formId = "123"; // 假设formId是123
+const formId = "101"; // 假设formId是123
 
 function initFormAssignStation() {
   get(`api/v1/forms/formId?formId=${formId}`, (data) => {
     console.log("getsuccess", data);
     data.forEach((element) => {
       const newStation = createReassignStation(
-        element.index,
-        element.jobtitle,
-        element.name
+        element.staffId,
+        element.position,
+        element.staffName,
+        element.staffCode
       );
       formSection.appendChild(newStation);
 
@@ -136,8 +142,9 @@ function initFormAssignStation() {
       );
       populateDepartments(departmentSelect);
     });
-    //createSubmit();
-    //bindFormSubmit();
+    createSubmit();
+    bindFormSubmit();
+    updateStationInfo();
   });
 }
 
@@ -168,7 +175,8 @@ function bindFormSubmit() {
         purchaseDept: document.querySelector("#purchase-dept").value,
         companyName: document.querySelector("#company-name").value,
         vendorNo: document.querySelector("#vendor-no").value,
-        items: [] // 初始化 items 数组
+        items: [], // 初始化 items 数组
+        stations:[]
       };
       document.querySelectorAll(".item-row").forEach((row) => {
         const item = {
@@ -182,13 +190,43 @@ function bindFormSubmit() {
       });
       // 备注
       formData.remarks = document.querySelector("#remarks").value;
+      
+      const stations=updateStationInfo();
+      formData.stations.push(stations);
+
+
       // 将表单数据转换为 JSON
       const jsonData = JSON.stringify(formData);
 
       console.log("表單內容", jsonData);
+
+      requestFormData(jsonData);
     });
 }
 
-//initFormAssignStation();
-createSubmit();
-bindFormSubmit();
+function updateStationInfo(){
+  console.log("ENter updateStationInfo")
+     // 提取表单的簽核站點數據
+     const stationsData = [];
+     document.querySelectorAll(".form-reassign-station").forEach((station)=>{
+        const stationItem = {
+          stationNumber: station.querySelector(".form-item:nth-child(1)").textContent,
+          position : station.querySelector(".form-item:nth-child(2)").textContent,
+          name : station.querySelector(".form-item:nth-child(3)").textContent,
+          staffCode : station.querySelector(".form-item:nth-child(3)").dataset.staffCode
+        }
+        stationsData.push(stationItem);
+        console.log("stationsData=",stationsData);
+      })
+
+     return stationsData;
+}
+
+
+//傳送
+function requestFormData(jsonData){
+
+}
+
+initFormAssignStation();
+
