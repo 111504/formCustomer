@@ -8,7 +8,7 @@
  使用第一筆處室作為預設
  回傳 該處室的人員名單填入人員列表
 */
-import { get } from "./net/request.js";
+import { get,post } from "./net/request.js";
 
 let formSection = document.getElementsByClassName("form-reassign-sign")[0];
 /*
@@ -122,10 +122,10 @@ function populateDepartments(departmentSelect) {
   });
 }
 
-const formId = "101"; // 假设formId是123
+const formtype = "device"; // 假設填寫的表單類型是 設備表
 
 function initFormAssignStation() {
-  get(`api/v1/forms/formId?formId=${formId}`, (data) => {
+  get(`api/v1/forms/formType?formType=${formtype}`, (data) => {
     console.log("getsuccess", data);
     data.forEach((element) => {
       const newStation = createReassignStation(
@@ -191,8 +191,8 @@ function bindFormSubmit() {
       // 备注
       formData.remarks = document.querySelector("#remarks").value;
       
-      const stations=updateStationInfo();
-      formData.stations.push(stations);
+     
+      formData.stations=updateStationInfo(); // 直接赋值
 
 
       // 将表单数据转换为 JSON
@@ -225,6 +225,12 @@ function updateStationInfo(){
 
 //傳送
 function requestFormData(jsonData){
+  console.log("傳送表單內容")
+  post('api/v1/forms/formContent',jsonData,
+    (data)=>{
+       console.log(data)
+  })
+
 
 }
 
