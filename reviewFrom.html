@@ -15,6 +15,7 @@
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
     crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/2.1.4/js/dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="reviewModal.css">
 </head>
@@ -66,40 +67,10 @@
         <div id="main-content">
             <table id="myTable" class="display">
                 <thead>
-                    <tr>
-                        <th>申請編號</th>
-                        <th>表單名稱</th>
-                        <th>發起者</th>
-                        <th>申請時間</th>
-                        <th>截止時間</th>
-                       
-                        <!-- <th>進度</th> -->
-                        <th>操作</th>
-
-                    </tr>
+             
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>12541</td>
-                        <td>設備申請單</td>
-                        <td>測試者</td>
-                        <td>2024-09-14 16:11:24</td>
-                        <td>2024-12-14 13:10:24</td>
-                       
-                        <!-- <td>審核中</td> -->
-                        <td><button class="review-btn">審核</button></td>
-                    </tr>
-                    <tr>
-                        <td>15141</td>
-                        <td>設備申請單</td>
-                        <td>測試者</td>
-                        <td>2024-09-14 16:11:24</td>
-                        <td>2024-12-14 13:10:24</td>
-                        
-                        <!-- <td>已結案</td> -->
-                        <td><button class="review-btn">審核</button></td>
-                    </tr>
-                  
+                   
                 </tbody>
             </table>
         </div>
@@ -178,7 +149,9 @@
         </div>
     </div>
 </div>
-    <script src="script.js"></script>
-    <script src="personFrom.js"></script>
+    <script type="module" src="net/request.js"></script>
+    <script type="module" src="script.js"></script>
+    <script type="module" src="personFrom.js"></script>
+    
 </body>
 </html>

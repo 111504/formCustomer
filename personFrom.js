@@ -1,10 +1,86 @@
-$(document).ready(function() {
-    $('#myTable').DataTable();
 
-     // 绑定点击事件到審核按钮
-//  $('#myTable').on('click', '.review-btn', function() {
-//     alert('您即將進行審核操作！');
-// });
+import {post,get} from "./net/request.js"
+
+
+ const currentId="FIN001";
+ const currentIdOwn="HR001";
+//const currentId="FIN003";
+function formatDate(timestamp) {
+    var date = new Date(timestamp);
+    var year = date.getFullYear();
+    var month = ('0' + (date.getMonth() + 1)).slice(-2);
+    var day = ('0' + date.getDate()).slice(-2);
+    return `${year}-${month}-${day}`;
+}
+function getFormNeedToSign(currentId,table) {
+    get(`api/v1/forms/formNeedToSign?currentApprovalId=${currentId}`, (data) => {
+      console.log("get_form_need_to_sign", data);
+        if(data){
+            updateDataTable(data,table);
+        }
+        else{
+            alert('搜尋結果為空')
+        }
+      
+      
+    });
+  }
+
+  function getFormFromOwn(currentApprovalId){
+    get(`api/v1/forms/formOwnSub?currentApprovalId=${currentApprovalId}`, (data) => {
+        console.log("get_form_from_own", data);
+      });
+  }
+   // 更新 DataTable 資料
+   function updateDataTable(data,table) {
+    // 清空當前 DataTable
+    table.clear();
+
+    // 將 API 回傳的資料轉換為 DataTable 接受的格式
+    var formattedData = data.map(function(item) {
+        return [
+            item.formId,
+            item.submitter_id,
+            formatDate(item.submitter_data),
+            item.formtype,
+            item.staffName,
+        ];
+    });
+    console.log(formattedData)
+
+    // 新增資料到 DataTable
+    table.rows.add(formattedData);
+
+    // 重新繪製 DataTable
+    table.draw();
+}
+
+  $(document).ready(function() {
+
+
+    var table = new DataTable('#myTable', {
+        language: {
+            url: '/locales/zh-HANT.json',  // 使用本地的語言文件路徑,
+        },
+        data:[],
+        columns:[
+            { title: "Form ID" },
+            { title: "Submitter ID" },
+            { title: "Submitter Data" },
+            { title: "Form Type" },
+            { title: "Staff Name" },
+            { 
+                title: "操作",  // 新增操作欄
+                data: null,
+                render: function(data, type, row) {
+                    return `<button class="review-btn">審核</button>`;
+                }
+            },
+        ]
+    });
+
+    
+    getFormNeedToSign(currentId,table);
 
     // 获取模态框元素
     var modal = document.getElementById("reviewModal");
@@ -34,11 +110,11 @@ $(document).ready(function() {
         }
     }
 
-    // 处理文件上传标签显示
-    $("#fileUpload").change(function() {
-        var filename = $(this).val().split("\\").pop();
-        $("#fileLabel").text(filename ? filename : "未選擇任何檔案");
-    });
+    // // 处理文件上传标签显示
+    // $("#fileUpload").change(function() {
+    //     var filename = $(this).val().split("\\").pop();
+    //     $("#fileLabel").text(filename ? filename : "未選擇任何檔案");
+    // });
 
 
     // 提交按钮逻辑
@@ -66,4 +142,11 @@ confirmBtn.onclick = function() {
     reassignModal.style.display = "none";
 }
 
+
+  getFormFromOwn(currentIdOwn);
+
 });
+
+
+
+
